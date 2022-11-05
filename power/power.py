@@ -23,6 +23,7 @@ class Power(pygame.sprite.Sprite):
         
         self.score_save = 0
         self.immunity = False
+        self.killer = False
 
     def animation_state(self):
         self.animation_index += 0.1
@@ -35,11 +36,12 @@ class Power(pygame.sprite.Sprite):
         self.destroy(player)
 
     def select_power(self):
-        powers = ["immunity"]
+        powers = ["immunity", "killer"]
         power_selected = choice(powers)
-
-        if power_selected:
+        if power_selected == "immunity":
             self.immunity = True
+        elif power_selected == "killer":
+            self.killer = True
 
     def destroy(self, player):
         if pygame.sprite.collide_rect(player.sprite, self):
@@ -54,3 +56,4 @@ class Power(pygame.sprite.Sprite):
 
         if self.score_save and self.score_save + 5 == score:
             self.immunity = False
+            self.killer = False

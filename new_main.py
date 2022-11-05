@@ -45,6 +45,14 @@ def collision_sprite():
         if power.immunity:
             power.power_stop(score)
             return True
+        if power.killer:
+            power.power_stop(score)
+
+            if pygame.sprite.spritecollide(player.sprite, obstacle_group, False):
+                for obstacle in obstacle_group:
+                    if pygame.sprite.collide_rect(player.sprite, obstacle):
+                        obstacle.kill()
+                        return True
 
     if pygame.sprite.spritecollide(player.sprite, obstacle_group, False):
         obstacle_group.empty()
@@ -52,6 +60,7 @@ def collision_sprite():
         game_over_music.play()
         bg_music.stop()
         return False
+
     return True
 
 
@@ -125,7 +134,7 @@ while True:
         # Draw
         player.draw(screen)
         player.update()
-
+        
         if power:
             character.change_skin_player(power)
 

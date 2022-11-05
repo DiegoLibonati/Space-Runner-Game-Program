@@ -25,9 +25,9 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
             self.jump_sound.play()
             self.gravity = -20
-        if keys[pygame.K_d] and self.rect.bottom >= 300:
+        if keys[pygame.K_d]:
             self.rect.x += 2
-        if keys[pygame.K_a] and self.rect.bottom >= 300:
+        if keys[pygame.K_a]:
             self.rect.x += -2
 
     def apply_gravity(self):
@@ -61,10 +61,15 @@ class Player(pygame.sprite.Sprite):
 
     def change_skin_player(self, power = False):
         
-        if power.immunity:
+        if power.immunity and not power.killer:
             self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1_immunity.png").convert_alpha()
             self.player_walk_2 = pygame.image.load("graphics/player/player_walk_2_immunity.png").convert_alpha()
             self.player_jump = pygame.image.load("graphics/player/jump_immunity.png").convert_alpha()
+            self.player_walk = [self.player_walk_1, self.player_walk_2]
+        elif power.killer and not power.immunity:
+            self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1_killer.png").convert_alpha()
+            self.player_walk_2 = pygame.image.load("graphics/player/player_walk_2_killer.png").convert_alpha()
+            self.player_jump = pygame.image.load("graphics/player/jump_killer.png").convert_alpha()
             self.player_walk = [self.player_walk_1, self.player_walk_2]
         else:
             self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()

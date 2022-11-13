@@ -43,7 +43,7 @@ Space Runner is a game developed in Python through the Pygame library. In this g
 
 ## Video
 
-Game in progess. Description coming soon...
+https://user-images.githubusercontent.com/99032604/201543320-020d09af-9266-4a0b-8fff-dbaf4083f587.mp4
 
 ## Documentation
 

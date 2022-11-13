@@ -41,8 +41,10 @@ class Obstacle(pygame.sprite.Sprite):
             self.rect.x -= 5
         elif score > 50 and score <= 100:
             self.rect.x -= 10
+        elif score > 100 and score <= 200:
+            self.rect.x -= 25
         else: 
-            self.rect.x -= 10
+            self.rect.x -= 30
 
         self.destroy()
 

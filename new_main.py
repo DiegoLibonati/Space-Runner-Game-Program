@@ -20,6 +20,8 @@ bg_music.set_volume(0.1)
 
 game_over_music = pygame.mixer.Sound("audio/game_over.mp3")
 
+obstacle_kill = pygame.mixer.Sound("audio/kill_obstacle.mp3")
+
 # Groups
 player = pygame.sprite.GroupSingle()
 player.add(Player())
@@ -51,6 +53,7 @@ def collision_sprite():
             if pygame.sprite.spritecollide(player.sprite, obstacle_group, False):
                 for obstacle in obstacle_group:
                     if pygame.sprite.collide_rect(player.sprite, obstacle):
+                        obstacle_kill.play()
                         obstacle.kill()
                         return True
 

@@ -25,21 +25,9 @@ Space Runner is a game developed in Python through the Pygame library. In this g
 3. sys
 4. random
 
-## Galery
-
-![Space-Runner-Game](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spacerunner-0.jpg)
-
-![Space-Runner-Game](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spacerunner-1.jpg)
-
-![Space-Runner-Game](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spacerunner-2.jpg)
-
-![Space-Runner-Game](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spacerunner-3.jpg)
-
-![Space-Runner-Game](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spacerunner-4.jpg)
-
 ## Portfolio link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Space%20Runner%20Game`
+[`https://www.diegolibonati.com.ar/#/project/6`](https://www.diegolibonati.com.ar/#/project/6)
 
 ## Video
 

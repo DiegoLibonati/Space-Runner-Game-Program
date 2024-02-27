@@ -86,19 +86,19 @@ class Player(pygame.sprite.Sprite):
     ) -> None:
         
         if power.immunity and not power.killer:
-            self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1_immunity.png").convert_alpha()
-            self.player_walk_2 = pygame.image.load("graphics/player/player_walk_2_immunity.png").convert_alpha()
-            self.player_jump = pygame.image.load("graphics/player/jump_immunity.png").convert_alpha()
+            self.player_walk_1 = pygame.image.load("./src/graphics/player/player_walk_1_immunity.png").convert_alpha()
+            self.player_walk_2 = pygame.image.load("./src/graphics/player/player_walk_2_immunity.png").convert_alpha()
+            self.player_jump = pygame.image.load("./src/graphics/player/jump_immunity.png").convert_alpha()
             self.player_walk_frames = [self.player_walk_1, self.player_walk_2]
         elif power.killer and not power.immunity:
-            self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1_killer.png").convert_alpha()
-            self.player_walk_2 = pygame.image.load("graphics/player/player_walk_2_killer.png").convert_alpha()
-            self.player_jump = pygame.image.load("graphics/player/jump_killer.png").convert_alpha()
+            self.player_walk_1 = pygame.image.load("./src/graphics/player/player_walk_1_killer.png").convert_alpha()
+            self.player_walk_2 = pygame.image.load("./src/graphics/player/player_walk_2_killer.png").convert_alpha()
+            self.player_jump = pygame.image.load("./src/graphics/player/jump_killer.png").convert_alpha()
             self.player_walk_frames = [self.player_walk_1, self.player_walk_2]
         else:
-            self.player_walk_1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
-            self.player_walk_2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
-            self.player_jump = pygame.image.load("graphics/player/jump.png").convert_alpha()
+            self.player_walk_1 = pygame.image.load("./src/graphics/player/player_walk_1.png").convert_alpha()
+            self.player_walk_2 = pygame.image.load("./src/graphics/player/player_walk_2.png").convert_alpha()
+            self.player_jump = pygame.image.load("./src/graphics/player/jump.png").convert_alpha()
             self.player_walk_frames = [self.player_walk_1, self.player_walk_2]
 
 

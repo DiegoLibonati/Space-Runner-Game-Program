@@ -3,9 +3,9 @@ import pygame
 
 from sys import exit
 from random import choice, randint
-from player.player import Player
-from obstacle.obstacle import Obstacle
-from power.power import Power
+from models.player import Player
+from models.obstacle import Obstacle
+from models.power import Power
 from utils import utils
 
 
@@ -18,12 +18,12 @@ game_active = False
 start_time = 0
 score = 0
 
-bg_music = pygame.mixer.Sound("audio/music.wav")
+bg_music = pygame.mixer.Sound("./src/audio/music.wav")
 bg_music.set_volume(0.1)
 
-game_over_music = pygame.mixer.Sound("audio/game_over.mp3")
+game_over_music = pygame.mixer.Sound("./src/audio/game_over.mp3")
 
-obstacle_kill = pygame.mixer.Sound("audio/kill_obstacle.mp3")
+obstacle_kill = pygame.mixer.Sound("./src/audio/kill_obstacle.mp3")
 
 # Groups
 player = pygame.sprite.GroupSingle()
@@ -84,13 +84,13 @@ def collision_sprite() -> bool:
 pygame.display.set_caption("Runner")
 clock = pygame.time.Clock()
 
-principal_font = pygame.font.Font("./font/Pixeltype.ttf", 50)
+principal_font = pygame.font.Font("./src/font/Pixeltype.ttf", 50)
 
-sky_surface = pygame.image.load("./graphics/Sky.png").convert()
-ground_surface = pygame.image.load("./graphics/ground.png").convert()
+sky_surface = pygame.image.load("./src/graphics/Sky.png").convert()
+ground_surface = pygame.image.load("./src/graphics/ground.png").convert()
 
 # Lose Screen
-player_stand = pygame.image.load("graphics/player/player_stand.png").convert_alpha()
+player_stand = pygame.image.load("./src/graphics/player/player_stand.png").convert_alpha()
 player_stand = pygame.transform.scale2x(player_stand)
 player_stand_rect = player_stand.get_rect(center=(400,200))
 

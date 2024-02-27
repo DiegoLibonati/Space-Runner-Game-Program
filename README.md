@@ -7,7 +7,7 @@
 3. Install virtual env, you can use: `virtualenv venv` in the console
 4. Run `venv/Scripts/Activate` in your console
 5. Install requirements.txt
-6. Run `python new_main.py`
+6. Run `python main.py`
 7. Enjoy
 
 ## Description
@@ -35,7 +35,7 @@ https://user-images.githubusercontent.com/99032604/201543320-020d09af-9266-4a0b-
 
 ## Documentation
 
-### new_main.py
+### main.py
 
 ---
 

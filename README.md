@@ -1,4 +1,4 @@
-# Space-Runner-Game-Program
+# Space Runner Game Program
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ Space Runner is a game developed in Python through the Pygame library. In this g
 
 ## Portfolio link
 
-[`https://www.diegolibonati.com.ar/#/project/6`](https://www.diegolibonati.com.ar/#/project/6)
+[`https://www.diegolibonati.com.ar/#/project/Space-Runner-Game-Program`](https://www.diegolibonati.com.ar/#/project/Space-Runner-Game-Program)
 
 ## Video
 

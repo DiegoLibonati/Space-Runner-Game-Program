@@ -1,16 +1,17 @@
-from random import randint
-from random import choice
+from random import choice, randint
 
 import pygame
 
-from src.constants.paths import (POWER_MISTERY_ANIMATION_1, POWER_MISTERY_ANIMATION_2,
-POWER_MISTERY_ANIMATION_3,
-POWER_MISTERY_ANIMATION_4,
-POWER_MISTERY_ANIMATION_5,
-POWER_MISTERY_ANIMATION_6,
-POWER_MISTERY_ANIMATION_7,
-POWER_PICK_SOUND_1,)
-
+from src.constants.paths import (
+    POWER_MISTERY_ANIMATION_1,
+    POWER_MISTERY_ANIMATION_2,
+    POWER_MISTERY_ANIMATION_3,
+    POWER_MISTERY_ANIMATION_4,
+    POWER_MISTERY_ANIMATION_5,
+    POWER_MISTERY_ANIMATION_6,
+    POWER_MISTERY_ANIMATION_7,
+    POWER_PICK_SOUND_1,
+)
 
 
 class Power(pygame.sprite.Sprite):
@@ -29,12 +30,16 @@ class Power(pygame.sprite.Sprite):
             pygame.image.load(POWER_MISTERY_ANIMATION_4).convert_alpha(),
             pygame.image.load(POWER_MISTERY_ANIMATION_5).convert_alpha(),
             pygame.image.load(POWER_MISTERY_ANIMATION_6).convert_alpha(),
-            pygame.image.load(POWER_MISTERY_ANIMATION_7).convert_alpha()
+            pygame.image.load(POWER_MISTERY_ANIMATION_7).convert_alpha(),
         ]
-        self._power_pick_sound: pygame.mixer.Sound = pygame.mixer.Sound(POWER_PICK_SOUND_1)
+        self._power_pick_sound: pygame.mixer.Sound = pygame.mixer.Sound(
+            POWER_PICK_SOUND_1
+        )
 
         self.image: pygame.Surface = self._frames[self._animation_index]
-        self.rect: pygame.Rect = self.image.get_rect(midbottom = (randint(10, 730), self._y_pos))
+        self.rect: pygame.Rect = self.image.get_rect(
+            midbottom=(randint(10, 730), self._y_pos)
+        )
 
         self._config()
 
@@ -44,7 +49,8 @@ class Power(pygame.sprite.Sprite):
     def _animation_state(self) -> None:
         self._animation_index += 0.1
 
-        if self._animation_index >= len(self._frames): self._animation_index = 0
+        if self._animation_index >= len(self._frames):
+            self._animation_index = 0
         self.image = self._frames[int(self._animation_index)]
 
     def update(self, player: pygame.sprite.GroupSingle) -> None:
@@ -57,8 +63,9 @@ class Power(pygame.sprite.Sprite):
         self._power_reset_time = pygame.time.get_ticks() + 5000
 
     def _pick_up(self, player: pygame.sprite.GroupSingle) -> None:
-        if not pygame.sprite.collide_rect(player.sprite, self): return
-        
+        if not pygame.sprite.collide_rect(player.sprite, self):
+            return
+
         self._power_pick_sound.play()
         self._select_power()
         self.kill()

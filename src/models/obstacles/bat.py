@@ -1,6 +1,6 @@
 import pygame
 
-from src.models.obstacles.Obstacle import Obstacle
+from src.models.obstacles.obstacle import Obstacle
 
 
 class Bat(Obstacle):

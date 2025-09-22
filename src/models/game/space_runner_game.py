@@ -1,14 +1,21 @@
 import math
+from random import choice, randint
 from sys import exit
-from random import randint
-from random import choice
 
 import pygame
 
-from src.models.player.Player import Player
-from src.models.power.Power import Power
+from src.constants.paths import (
+    BG_GAME_SOUND,
+    GAME_OVER_GAME_SOUND,
+    GROUND,
+    OBSTACLE_KILL_SOUND,
+    PLAYER_STAND_1,
+    PRIMARY_FONT,
+    SKY,
+)
+from src.models.player.player import Player
+from src.models.power.power import Power
 from src.utils.utils import get_obstacle_by_type
-from src.constants.paths import (BG_GAME_SOUND, GAME_OVER_GAME_SOUND, OBSTACLE_KILL_SOUND, PRIMARY_FONT, PLAYER_STAND_1, GROUND, SKY)
 
 
 class SpaceRunnerGame:
@@ -29,18 +36,34 @@ class SpaceRunnerGame:
         self._power_single_group = pygame.sprite.GroupSingle()
         self._obstacle_group = pygame.sprite.Group()
         self._bg_music: pygame.mixer.Sound = pygame.mixer.Sound(BG_GAME_SOUND)
-        self._game_over_music: pygame.mixer.Sound = pygame.mixer.Sound(GAME_OVER_GAME_SOUND)
-        self._obstacle_kill: pygame.mixer.Sound = pygame.mixer.Sound(OBSTACLE_KILL_SOUND)
+        self._game_over_music: pygame.mixer.Sound = pygame.mixer.Sound(
+            GAME_OVER_GAME_SOUND
+        )
+        self._obstacle_kill: pygame.mixer.Sound = pygame.mixer.Sound(
+            OBSTACLE_KILL_SOUND
+        )
         self._primary_font = pygame.font.Font(PRIMARY_FONT, 50)
 
-        self._player_stand_surface = pygame.transform.scale2x(pygame.image.load(PLAYER_STAND_1).convert_alpha())
+        self._player_stand_surface = pygame.transform.scale2x(
+            pygame.image.load(PLAYER_STAND_1).convert_alpha()
+        )
         self._sky_surface = pygame.image.load(SKY).convert()
-        self._game_title_surface = self._primary_font.render(self.title, False, (111, 196, 169))
-        self._reset_game_surface = self._primary_font.render("Reset game with SPACE", False, (111, 196, 169))
+        self._game_title_surface = self._primary_font.render(
+            self.title, False, (111, 196, 169)
+        )
+        self._reset_game_surface = self._primary_font.render(
+            "Reset game with SPACE", False, (111, 196, 169)
+        )
         self._ground_surface = pygame.image.load(GROUND).convert()
-        self._player_stand_surface_rect = self._player_stand_surface.get_rect(center=(400, 200))
-        self._game_title_surface_rect = self._game_title_surface.get_rect(center=(400, 50))
-        self._reset_game_surface_rect = self._reset_game_surface.get_rect(center=(400, 350))
+        self._player_stand_surface_rect = self._player_stand_surface.get_rect(
+            center=(400, 200)
+        )
+        self._game_title_surface_rect = self._game_title_surface.get_rect(
+            center=(400, 50)
+        )
+        self._reset_game_surface_rect = self._reset_game_surface.get_rect(
+            center=(400, 350)
+        )
 
         self._config_game()
 
@@ -51,19 +74,19 @@ class SpaceRunnerGame:
     @property
     def screen(self) -> pygame.Surface:
         return self._screen
-    
+
     @property
     def game_started(self) -> bool:
         return self._game_started
-    
+
     @property
     def score(self) -> int:
         return self._score
-    
+
     @property
     def start_time(self) -> int:
         return self._start_time
-    
+
     @property
     def obstacles_spawn(self) -> list[str]:
         return self._obstacles_spawn
@@ -72,22 +95,22 @@ class SpaceRunnerGame:
     def player_single_group(self) -> pygame.sprite.GroupSingle:
         return self._player_single_group
 
-    @property 
+    @property
     def player(self) -> Player:
         return self.player_single_group.sprites()[0]
-    
+
     @property
     def power_single_group(self) -> pygame.sprite.GroupSingle:
         return self._power_single_group
-    
-    @property 
+
+    @property
     def power(self) -> Power:
         return self._power
-    
+
     @property
     def obstacle_group(self) -> pygame.sprite.Group:
         return self._obstacle_group
-    
+
     @property
     def clock(self) -> pygame.time.Clock:
         return self._clock
@@ -118,31 +141,39 @@ class SpaceRunnerGame:
         current_time = pygame.time.get_ticks() - self.start_time
         current_time = math.floor(current_time / 1000)
 
-        score_surface = self._primary_font.render(f"Score: {current_time}", False, (64,64,64))
-        score_surface_rect = score_surface.get_rect(center = (400, 50))
+        score_surface = self._primary_font.render(
+            f"Score: {current_time}", False, (64, 64, 64)
+        )
+        score_surface_rect = score_surface.get_rect(center=(400, 50))
 
         self.screen.blit(score_surface, score_surface_rect)
 
         return current_time
-    
+
     def _collision_sprite(self) -> bool:
         if self.power and self.power.current_power == "immunity":
             self.power.stop_power()
-            
+
             return True
-        
+
         if self.power and self.power.current_power == "killer":
             self.power.stop_power()
-            
-            if pygame.sprite.spritecollide(self.player_single_group.sprite, self.obstacle_group, False):
+
+            if pygame.sprite.spritecollide(
+                self.player_single_group.sprite, self.obstacle_group, False
+            ):
                 for obstacle in self.obstacle_group:
-                    if pygame.sprite.collide_rect(self.player_single_group.sprite, obstacle):
+                    if pygame.sprite.collide_rect(
+                        self.player_single_group.sprite, obstacle
+                    ):
                         self._obstacle_kill.play()
                         obstacle.kill()
 
                         return True
-        
-        if pygame.sprite.spritecollide(self.player_single_group.sprite, self.obstacle_group, False):
+
+        if pygame.sprite.spritecollide(
+            self.player_single_group.sprite, self.obstacle_group, False
+        ):
             self.obstacle_group.empty()
             self.power_single_group.empty()
 
@@ -162,20 +193,39 @@ class SpaceRunnerGame:
                     pygame.quit()
                     exit()
 
-                if not self.game_started and event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                if (
+                    not self.game_started
+                    and event.type == pygame.KEYDOWN
+                    and event.key == pygame.K_SPACE
+                ):
                     self._game_started = True
                     self._start_time = pygame.time.get_ticks()
 
-                    self._bg_music.play(loops = -1)
+                    self._bg_music.play(loops=-1)
                     self._game_over_music.stop()
 
-                if self.game_started and event.type == self._obstacle_event and self.score >= 0 and "snail" not in self.obstacles_spawn:
+                if (
+                    self.game_started
+                    and event.type == self._obstacle_event
+                    and self.score >= 0
+                    and "snail" not in self.obstacles_spawn
+                ):
                     self._obstacles_spawn.append("snail")
 
-                if self.game_started and event.type == self._obstacle_event and self.score >= 10 and "bat" not in self.obstacles_spawn:
+                if (
+                    self.game_started
+                    and event.type == self._obstacle_event
+                    and self.score >= 10
+                    and "bat" not in self.obstacles_spawn
+                ):
                     self._obstacles_spawn.append("bat")
 
-                if self.game_started and event.type == self._obstacle_event and self.score >= 20 and "grounder" not in self.obstacles_spawn:
+                if (
+                    self.game_started
+                    and event.type == self._obstacle_event
+                    and self.score >= 20
+                    and "grounder" not in self.obstacles_spawn
+                ):
                     self._obstacles_spawn.append("grounder")
 
                 if self.game_started and event.type == self._obstacle_event:
@@ -184,17 +234,27 @@ class SpaceRunnerGame:
 
                 if self.game_started and event.type == self._power_event:
                     self._power = Power()
-                    self.power_single_group.add(self.power) 
+                    self.power_single_group.add(self.power)
 
             if not self.game_started:
                 self.screen.fill((94, 129, 162))
-                self.screen.blit(self._player_stand_surface, self._player_stand_surface_rect)
-                self.screen.blit(self._game_title_surface, self._game_title_surface_rect)
-                self.screen.blit(self._reset_game_surface, self._reset_game_surface_rect)
+                self.screen.blit(
+                    self._player_stand_surface, self._player_stand_surface_rect
+                )
+                self.screen.blit(
+                    self._game_title_surface, self._game_title_surface_rect
+                )
+                self.screen.blit(
+                    self._reset_game_surface, self._reset_game_surface_rect
+                )
 
             if not self.game_started and self.score:
-                final_score_surface = self._primary_font.render(f"Score: {self.score}", False, (111, 196, 169))
-                final_score_surface_rect = final_score_surface.get_rect(center=(400, 80))
+                final_score_surface = self._primary_font.render(
+                    f"Score: {self.score}", False, (111, 196, 169)
+                )
+                final_score_surface_rect = final_score_surface.get_rect(
+                    center=(400, 80)
+                )
 
                 self.screen.blit(final_score_surface, final_score_surface_rect)
 
@@ -207,7 +267,7 @@ class SpaceRunnerGame:
                 # Draw
                 self.player_single_group.draw(surface=self.screen)
                 self.player_single_group.update()
-                
+
                 if self.power:
                     self.player.change_skin_player(power=self.power.current_power)
 

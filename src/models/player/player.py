@@ -1,6 +1,17 @@
-import pygame 
+import pygame
 
-from src.constants.paths import (PLAYER_WALK_1, PLAYER_WALK_2, PLAYER_JUMP_1, PLAYER_JUMP_SOUND_1, PLAYER_IMMUNITY_WALK_1, PLAYER_IMMUNITY_WALK_2, PLAYER_IMMUNITY_JUMP_1, PLAYER_KILLER_WALK_1, PLAYER_KILLER_WALK_2, PLAYER_KILLER_JUMP_1)
+from src.constants.paths import (
+    PLAYER_IMMUNITY_JUMP_1,
+    PLAYER_IMMUNITY_WALK_1,
+    PLAYER_IMMUNITY_WALK_2,
+    PLAYER_JUMP_1,
+    PLAYER_JUMP_SOUND_1,
+    PLAYER_KILLER_JUMP_1,
+    PLAYER_KILLER_WALK_1,
+    PLAYER_KILLER_WALK_2,
+    PLAYER_WALK_1,
+    PLAYER_WALK_2,
+)
 
 
 class Player(pygame.sprite.Sprite):
@@ -12,13 +23,15 @@ class Player(pygame.sprite.Sprite):
 
         self._walk_frames: list[pygame.Surface] = [
             pygame.image.load(PLAYER_WALK_1).convert_alpha(),
-            pygame.image.load(PLAYER_WALK_2).convert_alpha()
-        ] 
-        self._jump_frame: pygame.Surface = pygame.image.load(PLAYER_JUMP_1).convert_alpha()
+            pygame.image.load(PLAYER_WALK_2).convert_alpha(),
+        ]
+        self._jump_frame: pygame.Surface = pygame.image.load(
+            PLAYER_JUMP_1
+        ).convert_alpha()
         self._jump_sound: pygame.mixer.Sound = pygame.mixer.Sound(PLAYER_JUMP_SOUND_1)
 
         self.image: pygame.Surface = self._walk_frames[self._walk_index]
-        self.rect: pygame.Rect = self.image.get_rect(midbottom = (80, 300))
+        self.rect: pygame.Rect = self.image.get_rect(midbottom=(80, 300))
 
         self._config()
 
@@ -60,13 +73,14 @@ class Player(pygame.sprite.Sprite):
 
         a = keys[pygame.K_a]
         d = keys[pygame.K_d]
-        
+
         if not self.is_jump:
             self.image = self._walk_frames[0]
 
-        if (a or d) and not self.is_jump: 
+        if (a or d) and not self.is_jump:
             self._walk_index += 0.1
-            if self._walk_index >= len(self._walk_frames): self._walk_index = 0
+            if self._walk_index >= len(self._walk_frames):
+                self._walk_index = 0
             self.image = self._walk_frames[int(self._walk_index)]
 
     def _limits(self) -> None:
@@ -76,23 +90,23 @@ class Player(pygame.sprite.Sprite):
         if self.rect.x >= 735:
             self.rect.x = 735
 
-    def change_skin_player(self, power: str) -> None:  
+    def change_skin_player(self, power: str) -> None:
         if power == "immunity":
             self._walk_frames = [
                 pygame.image.load(PLAYER_IMMUNITY_WALK_1).convert_alpha(),
-                pygame.image.load(PLAYER_IMMUNITY_WALK_2).convert_alpha()
+                pygame.image.load(PLAYER_IMMUNITY_WALK_2).convert_alpha(),
             ]
             self._jump_frame = pygame.image.load(PLAYER_IMMUNITY_JUMP_1).convert_alpha()
         elif power == "killer":
             self._walk_frames = [
                 pygame.image.load(PLAYER_KILLER_WALK_1).convert_alpha(),
-                pygame.image.load(PLAYER_KILLER_WALK_2).convert_alpha()
+                pygame.image.load(PLAYER_KILLER_WALK_2).convert_alpha(),
             ]
             self._jump_frame = pygame.image.load(PLAYER_KILLER_JUMP_1).convert_alpha()
         else:
             self._walk_frames = [
                 pygame.image.load(PLAYER_WALK_1).convert_alpha(),
-                pygame.image.load(PLAYER_WALK_2).convert_alpha()
+                pygame.image.load(PLAYER_WALK_2).convert_alpha(),
             ]
             self._jump_frame = pygame.image.load(PLAYER_JUMP_1).convert_alpha()
 
@@ -101,4 +115,3 @@ class Player(pygame.sprite.Sprite):
         self._apply_gravity()
         self._animation_state()
         self._limits()
-        

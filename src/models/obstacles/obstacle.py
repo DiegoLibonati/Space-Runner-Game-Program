@@ -1,8 +1,7 @@
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from random import randint
 
-import pygame 
+import pygame
 
 
 class Obstacle(pygame.sprite.Sprite, ABC):
@@ -15,18 +14,21 @@ class Obstacle(pygame.sprite.Sprite, ABC):
         self._animation_index: int = 0
 
         self.image: pygame.Surface = self._frames[self._animation_index]
-        self.rect: pygame.Rect = self.image.get_rect(midbottom = (randint(900, 1100), self._y_pos))
+        self.rect: pygame.Rect = self.image.get_rect(
+            midbottom=(randint(900, 1100), self._y_pos)
+        )
 
         self.config()
 
     @abstractmethod
-    def config(self) -> None: 
+    def config(self) -> None:
         pass
 
     def _animation_state(self) -> None:
         self._animation_index += 0.1
 
-        if self._animation_index >= len(self._frames): self._animation_index = 0
+        if self._animation_index >= len(self._frames):
+            self._animation_index = 0
         self.image = self._frames[int(self._animation_index)]
 
     def _change_obstacle_speed(self, score: int) -> None:
@@ -36,7 +38,7 @@ class Obstacle(pygame.sprite.Sprite, ABC):
             self.rect.x -= 10
         elif score > 100 and score <= 200:
             self.rect.x -= 25
-        else: 
+        else:
             self.rect.x -= 30
 
     def _destroy(self) -> None:

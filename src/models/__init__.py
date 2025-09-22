@@ -1,9 +1,9 @@
 from .game.space_runner_game import SpaceRunnerGame
 from .obstacles.bat import Bat
 from .obstacles.grounder import Grounder
-from .obstacles.snail import Snail
 from .obstacles.obstacle import Obstacle
-from .player.player_t import Player
-from .power.power_t import Power
+from .obstacles.snail import Snail
+from .player.player import Player
+from .power.power import Power
 
 __all__ = ["SpaceRunnerGame", "Bat", "Grounder", "Snail", "Obstacle", "Player", "Power"]

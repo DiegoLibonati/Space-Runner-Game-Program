@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models.obstacles.bat.Bat import Bat
+from src.models import Bat
 
 
 def test_create_bat(bat: Bat) -> None:

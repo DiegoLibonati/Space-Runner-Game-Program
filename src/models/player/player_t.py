@@ -1,15 +1,6 @@
 import pygame 
 
-from src.constants.paths import PLAYER_WALK_1
-from src.constants.paths import PLAYER_WALK_2
-from src.constants.paths import PLAYER_JUMP_1
-from src.constants.paths import PLAYER_JUMP_SOUND_1
-from src.constants.paths import PLAYER_IMMUNITY_WALK_1
-from src.constants.paths import PLAYER_IMMUNITY_WALK_2
-from src.constants.paths import PLAYER_IMMUNITY_JUMP_1
-from src.constants.paths import PLAYER_KILLER_WALK_1
-from src.constants.paths import PLAYER_KILLER_WALK_2
-from src.constants.paths import PLAYER_KILLER_JUMP_1
+from src.constants.paths import (PLAYER_WALK_1, PLAYER_WALK_2, PLAYER_JUMP_1, PLAYER_JUMP_SOUND_1, PLAYER_IMMUNITY_WALK_1, PLAYER_IMMUNITY_WALK_2, PLAYER_IMMUNITY_JUMP_1, PLAYER_KILLER_WALK_1, PLAYER_KILLER_WALK_2, PLAYER_KILLER_JUMP_1)
 
 
 class Player(pygame.sprite.Sprite):

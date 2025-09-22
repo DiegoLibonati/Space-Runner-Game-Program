@@ -1,8 +1,7 @@
 from unittest.mock import patch
 from unittest.mock import MagicMock
 
-from src.models.power.Power import Power
-from src.models.game.SpaceRunnerGame import SpaceRunnerGame
+from src.models import Power, SpaceRunnerGame
 
 def test_create_space_runner_game(space_runner_game: SpaceRunnerGame) -> None:
     # General

@@ -1,6 +1,4 @@
-from src.models.obstacles.snail.Snail import Snail
-from src.models.obstacles.bat.Bat import Bat
-from src.models.obstacles.grounder.Grounder import Grounder
+from src.models import Snail, Bat, Grounder
 from src.utils.utils import get_obstacle_by_type
 
 def test_invalid_obstacle() -> None:

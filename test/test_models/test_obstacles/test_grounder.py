@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models.obstacles.grounder.Grounder import Grounder
+from src.models import Grounder
 
 
 def test_create_grounder(grounder: Grounder) -> None:

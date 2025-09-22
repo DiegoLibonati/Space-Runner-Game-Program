@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 import pygame
 
-from src.models.player.Player import Player
+from src.models import Player
 
 def test_create_player(player: Player) -> None:
     assert player

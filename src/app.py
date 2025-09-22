@@ -1,4 +1,4 @@
-from src.models.game.SpaceRunnerGame import SpaceRunnerGame
+from src.models import SpaceRunnerGame
 
 
 def main() -> None:

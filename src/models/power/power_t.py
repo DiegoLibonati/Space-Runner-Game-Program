@@ -3,14 +3,14 @@ from random import choice
 
 import pygame
 
-from src.constants.paths import POWER_MISTERY_ANIMATION_1
-from src.constants.paths import POWER_MISTERY_ANIMATION_2
-from src.constants.paths import POWER_MISTERY_ANIMATION_3
-from src.constants.paths import POWER_MISTERY_ANIMATION_4
-from src.constants.paths import POWER_MISTERY_ANIMATION_5
-from src.constants.paths import POWER_MISTERY_ANIMATION_6
-from src.constants.paths import POWER_MISTERY_ANIMATION_7
-from src.constants.paths import POWER_PICK_SOUND_1
+from src.constants.paths import (POWER_MISTERY_ANIMATION_1, POWER_MISTERY_ANIMATION_2,
+POWER_MISTERY_ANIMATION_3,
+POWER_MISTERY_ANIMATION_4,
+POWER_MISTERY_ANIMATION_5,
+POWER_MISTERY_ANIMATION_6,
+POWER_MISTERY_ANIMATION_7,
+POWER_PICK_SOUND_1,)
+
 
 
 class Power(pygame.sprite.Sprite):

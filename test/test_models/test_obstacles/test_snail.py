@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models.obstacles.snail.Snail import Snail
+from src.models import Snail
 
 
 def test_create_snail(snail: Snail) -> None:

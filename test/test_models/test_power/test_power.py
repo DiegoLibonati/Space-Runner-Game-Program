@@ -1,7 +1,7 @@
 from unittest.mock import patch
 from unittest.mock import MagicMock
 
-from src.models.power.Power import Power
+from src.models import Power
 
 def test_create_power(power: Power) -> None:
     assert power

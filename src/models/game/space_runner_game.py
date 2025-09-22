@@ -8,13 +8,7 @@ import pygame
 from src.models.player.Player import Player
 from src.models.power.Power import Power
 from src.utils.utils import get_obstacle_by_type
-from src.constants.paths import BG_GAME_SOUND
-from src.constants.paths import GAME_OVER_GAME_SOUND
-from src.constants.paths import OBSTACLE_KILL_SOUND
-from src.constants.paths import PRIMARY_FONT
-from src.constants.paths import PLAYER_STAND_1
-from src.constants.paths import GROUND
-from src.constants.paths import SKY
+from src.constants.paths import (BG_GAME_SOUND, GAME_OVER_GAME_SOUND, OBSTACLE_KILL_SOUND, PRIMARY_FONT, PLAYER_STAND_1, GROUND, SKY)
 
 
 class SpaceRunnerGame:

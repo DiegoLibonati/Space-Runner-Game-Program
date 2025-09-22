@@ -2,12 +2,7 @@ import pytest
 
 import pygame
 
-from src.models.power.Power import Power
-from src.models.player.Player import Player
-from src.models.obstacles.bat.Bat import Bat
-from src.models.obstacles.snail.Snail import Snail
-from src.models.obstacles.grounder.Grounder import Grounder
-from src.models.game.SpaceRunnerGame import SpaceRunnerGame
+from src.models import Power, Player, Bat, Snail, Grounder, SpaceRunnerGame
 from src.utils.utils import get_obstacle_by_type
 
 def pytest_sessionstart() -> None:

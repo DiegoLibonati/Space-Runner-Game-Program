@@ -1,11 +1,11 @@
 import pygame
 import pytest
 
-from src.core.utils import get_obstacle_by_type
 from src.models.game import SpaceRunnerGame
 from src.models.obstacles import Bat, Grounder, Snail
 from src.models.player import Player
 from src.models.power import Power
+from src.utils.helpers import get_obstacle_by_type
 
 
 def pytest_sessionstart() -> None:

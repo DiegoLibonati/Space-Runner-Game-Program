@@ -1,5 +1,5 @@
-from src.core.utils import get_obstacle_by_type
 from src.models.obstacles import Bat, Grounder, Snail
+from src.utils.helpers import get_obstacle_by_type
 
 
 def test_invalid_obstacle() -> None:

@@ -13,9 +13,9 @@ from src.core.paths import (
     PRIMARY_FONT,
     SKY,
 )
-from src.core.utils import get_obstacle_by_type
 from src.models.player import Player
 from src.models.power import Power
+from src.utils.helpers import get_obstacle_by_type
 
 
 class SpaceRunnerGame:

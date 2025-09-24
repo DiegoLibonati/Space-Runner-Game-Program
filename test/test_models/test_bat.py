@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models import Bat
+from src.models.obstacles import Bat
 
 
 def test_create_bat(bat: Bat) -> None:
@@ -11,9 +11,11 @@ def test_create_bat(bat: Bat) -> None:
     assert bat.image
     assert bat.rect
 
+
 def test_config_bat(bat: Bat) -> None:
     bat.config()
     pass
+
 
 def test_animation_state(bat: Bat) -> None:
     assert bat._animation_index == 0
@@ -29,6 +31,7 @@ def test_animation_state(bat: Bat) -> None:
 
     assert bat._animation_index == 1
     assert bat.image == bat._frames[int(bat._animation_index)]
+
 
 def test_change_obstacle_speed(bat: Bat) -> None:
     prev_rect_x = bat.rect.x
@@ -54,6 +57,7 @@ def test_change_obstacle_speed(bat: Bat) -> None:
     bat._change_obstacle_speed(score=2003)
 
     assert bat.rect.x == prev_rect_x - 30
+
 
 def test_destroy(bat: Bat) -> None:
     bat.kill = MagicMock()

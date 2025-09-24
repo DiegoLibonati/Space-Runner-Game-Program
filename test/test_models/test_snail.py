@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models import Snail
+from src.models.obstacles import Snail
 
 
 def test_create_snail(snail: Snail) -> None:
@@ -11,9 +11,11 @@ def test_create_snail(snail: Snail) -> None:
     assert snail.image
     assert snail.rect
 
+
 def test_config_snail(snail: Snail) -> None:
     snail.config()
     pass
+
 
 def test_animation_state(snail: Snail) -> None:
     assert snail._animation_index == 0
@@ -29,6 +31,7 @@ def test_animation_state(snail: Snail) -> None:
 
     assert snail._animation_index == 1
     assert snail.image == snail._frames[int(snail._animation_index)]
+
 
 def test_change_obstacle_speed(snail: Snail) -> None:
     prev_rect_x = snail.rect.x
@@ -54,6 +57,7 @@ def test_change_obstacle_speed(snail: Snail) -> None:
     snail._change_obstacle_speed(score=2003)
 
     assert snail.rect.x == prev_rect_x - 30
+
 
 def test_destroy(snail: Snail) -> None:
     snail.kill = MagicMock()

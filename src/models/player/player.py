@@ -1,6 +1,6 @@
 import pygame
 
-from src.constants.paths import (
+from src.core.paths import (
     PLAYER_IMMUNITY_JUMP_1,
     PLAYER_IMMUNITY_WALK_1,
     PLAYER_IMMUNITY_WALK_2,

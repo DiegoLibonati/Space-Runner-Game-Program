@@ -4,7 +4,7 @@ from sys import exit
 
 import pygame
 
-from src.constants.paths import (
+from src.core.paths import (
     BG_GAME_SOUND,
     GAME_OVER_GAME_SOUND,
     GROUND,
@@ -13,9 +13,9 @@ from src.constants.paths import (
     PRIMARY_FONT,
     SKY,
 )
-from src.models.player.player import Player
-from src.models.power.power import Power
-from src.utils.utils import get_obstacle_by_type
+from src.core.utils import get_obstacle_by_type
+from src.models.player import Player
+from src.models.power import Power
 
 
 class SpaceRunnerGame:

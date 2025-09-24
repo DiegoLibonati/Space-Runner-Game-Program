@@ -2,7 +2,7 @@ from random import choice, randint
 
 import pygame
 
-from src.constants.paths import (
+from src.core.paths import (
     POWER_MISTERY_ANIMATION_1,
     POWER_MISTERY_ANIMATION_2,
     POWER_MISTERY_ANIMATION_3,

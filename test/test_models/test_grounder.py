@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.models import Grounder
+from src.models.obstacles import Grounder
 
 
 def test_create_grounder(grounder: Grounder) -> None:
@@ -11,9 +11,11 @@ def test_create_grounder(grounder: Grounder) -> None:
     assert grounder.image
     assert grounder.rect
 
+
 def test_config_grounder(grounder: Grounder) -> None:
     grounder.config()
     pass
+
 
 def test_animation_state(grounder: Grounder) -> None:
     assert grounder._animation_index == 0
@@ -29,6 +31,7 @@ def test_animation_state(grounder: Grounder) -> None:
 
     assert grounder._animation_index == 1
     assert grounder.image == grounder._frames[int(grounder._animation_index)]
+
 
 def test_change_obstacle_speed(grounder: Grounder) -> None:
     prev_rect_x = grounder.rect.x
@@ -54,6 +57,7 @@ def test_change_obstacle_speed(grounder: Grounder) -> None:
     grounder._change_obstacle_speed(score=2003)
 
     assert grounder.rect.x == prev_rect_x - 30
+
 
 def test_destroy(grounder: Grounder) -> None:
     grounder.kill = MagicMock()

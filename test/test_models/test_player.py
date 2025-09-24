@@ -1,9 +1,9 @@
-from unittest.mock import patch
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import pygame
 
-from src.models import Player
+from src.models.player import Player
+
 
 def test_create_player(player: Player) -> None:
     assert player
@@ -16,10 +16,12 @@ def test_create_player(player: Player) -> None:
     assert player.rect
     assert not player.is_jump
 
+
 def test_config_player(player: Player) -> None:
     player._config()
-    
+
     assert round(player._jump_sound.get_volume(), 1) == 0.2
+
 
 def test_input_jump(player: Player) -> None:
     mock_keys = [0] * 323
@@ -33,6 +35,7 @@ def test_input_jump(player: Player) -> None:
         assert player._gravity == -20
         player._jump_sound.play.assert_called_once()
 
+
 def test_input_d(player: Player) -> None:
     prev_rect_x = player.rect.x
     mock_keys = [0] * 323
@@ -43,6 +46,7 @@ def test_input_d(player: Player) -> None:
 
         assert player.rect.x == prev_rect_x + 2
 
+
 def test_input_a(player: Player) -> None:
     prev_rect_x = player.rect.x
     mock_keys = [0] * 323
@@ -52,6 +56,7 @@ def test_input_a(player: Player) -> None:
         player._input()
 
         assert player.rect.x == prev_rect_x - 2
+
 
 def test_apply_gravity(player: Player) -> None:
     prev_rect_y = player.rect.y
@@ -66,6 +71,7 @@ def test_apply_gravity(player: Player) -> None:
     assert player.rect.bottom != 300
     assert player.is_jump
 
+
 def test_animation_state_jump(player: Player) -> None:
     player.rect.bottom = 299
 
@@ -73,13 +79,15 @@ def test_animation_state_jump(player: Player) -> None:
 
     assert player.is_jump
     assert player.image == player._jump_frame
-    
+
+
 def test_animation_state_not_jump(player: Player) -> None:
     player._animation_state()
 
     assert not player.is_jump
     assert player.image != player._jump_frame
     assert player.image == player._walk_frames[0]
+
 
 def test_animation_state_walk(player: Player) -> None:
     mock_keys = [0] * 323
@@ -100,6 +108,7 @@ def test_animation_state_walk(player: Player) -> None:
         assert player._walk_index == 1
         assert player._walk_frames[int(player._walk_index)]
 
+
 def test_limits(player: Player) -> None:
     player.rect.x = -2
 
@@ -112,6 +121,7 @@ def test_limits(player: Player) -> None:
     player._limits()
 
     assert player.rect.x == 735
+
 
 def test_change_skin_player(player: Player) -> None:
     prev_frames = player._walk_frames

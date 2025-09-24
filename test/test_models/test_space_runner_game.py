@@ -1,7 +1,8 @@
-from unittest.mock import patch
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
-from src.models import Power, SpaceRunnerGame
+from src.models.game import SpaceRunnerGame
+from src.models.power import Power
+
 
 def test_create_space_runner_game(space_runner_game: SpaceRunnerGame) -> None:
     # General
@@ -33,6 +34,7 @@ def test_create_space_runner_game(space_runner_game: SpaceRunnerGame) -> None:
     assert space_runner_game._game_title_surface_rect
     assert space_runner_game._reset_game_surface_rect
 
+
 def test_config_game(space_runner_game: SpaceRunnerGame) -> None:
     space_runner_game._config_game()
 
@@ -44,11 +46,13 @@ def test_config_game(space_runner_game: SpaceRunnerGame) -> None:
     assert space_runner_game.player_single_group
     assert space_runner_game.player
 
+
 def test_create_player(space_runner_game: SpaceRunnerGame) -> None:
     space_runner_game._create_player()
 
     assert space_runner_game.player_single_group
     assert space_runner_game.player
+
 
 def test_set_custom_events(space_runner_game: SpaceRunnerGame) -> None:
     space_runner_game._set_custom_events()
@@ -57,6 +61,7 @@ def test_set_custom_events(space_runner_game: SpaceRunnerGame) -> None:
     assert space_runner_game._snail_event
     assert space_runner_game._fly_event
     assert space_runner_game._power_event
+
 
 def test_display_score(space_runner_game: SpaceRunnerGame) -> None:
     with patch("pygame.time.get_ticks") as mock_get_ticks:
@@ -68,12 +73,16 @@ def test_display_score(space_runner_game: SpaceRunnerGame) -> None:
         assert score == 2
         assert isinstance(score, int)
 
+
 def test_collision_sprite(space_runner_game: SpaceRunnerGame) -> None:
     game_active = space_runner_game._collision_sprite()
 
     assert game_active
 
-def test_collision_sprite_power_immunity(space_runner_game: SpaceRunnerGame, power: Power) -> None:
+
+def test_collision_sprite_power_immunity(
+    space_runner_game: SpaceRunnerGame, power: Power
+) -> None:
     power.current_power = "immunity"
     power.stop_power = MagicMock()
 
@@ -82,8 +91,11 @@ def test_collision_sprite_power_immunity(space_runner_game: SpaceRunnerGame, pow
 
     assert game_active
     power.stop_power.assert_called_once()
-    
-def test_collision_sprite_power_killer(space_runner_game: SpaceRunnerGame, power: Power) -> None:
+
+
+def test_collision_sprite_power_killer(
+    space_runner_game: SpaceRunnerGame, power: Power
+) -> None:
     power.current_power = "killer"
     power.stop_power = MagicMock()
 
@@ -92,6 +104,7 @@ def test_collision_sprite_power_killer(space_runner_game: SpaceRunnerGame, power
 
     assert game_active
     power.stop_power.assert_called_once()
+
 
 def test_collision_sprite_lose(space_runner_game: SpaceRunnerGame) -> None:
     with patch("pygame.sprite.spritecollide") as mock_get_ticks:

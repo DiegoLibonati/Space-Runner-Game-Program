@@ -1,6 +1,6 @@
 import pygame
 
-from src.constants.paths import (
+from src.core.paths import (
     BAT_ANIMATION_1,
     BAT_ANIMATION_2,
     GROUNDER_ANIMATION_1,
@@ -12,9 +12,7 @@ from src.constants.paths import (
     SNAIL_ANIMATION_1,
     SNAIL_ANIMATION_2,
 )
-from src.models.obstacles.bat import Bat
-from src.models.obstacles.grounder import Grounder
-from src.models.obstacles.snail import Snail
+from src.models.obstacles import Bat, Grounder, Snail
 
 
 def get_obstacle_by_type(type: str) -> Snail | Bat | Grounder:

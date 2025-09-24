@@ -1,7 +1,7 @@
-from unittest.mock import patch
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
-from src.models import Power
+from src.models.power import Power
+
 
 def test_create_power(power: Power) -> None:
     assert power
@@ -14,9 +14,11 @@ def test_create_power(power: Power) -> None:
     assert not power._power_reset_time
     assert not power.current_power
 
+
 def test_config_power(power: Power) -> None:
     power._config()
     pass
+
 
 def test_animation_state(power: Power) -> None:
     assert power._animation_index == 0
@@ -33,12 +35,14 @@ def test_animation_state(power: Power) -> None:
     assert power._animation_index == 1
     assert power.image == power._frames[int(power._animation_index)]
 
+
 def test_select_power(power: Power) -> None:
     assert not power.current_power
 
     power._select_power()
 
     assert power.current_power
+
 
 def test_pick_up(power: Power) -> None:
     player = MagicMock()
@@ -50,6 +54,7 @@ def test_pick_up(power: Power) -> None:
         power._pick_up(player=player)
 
         assert power.current_power
+
 
 def test_stop_power(power: Power) -> None:
     with patch("pygame.time.get_ticks") as mock_get_ticks:
@@ -64,4 +69,3 @@ def test_stop_power(power: Power) -> None:
         power.stop_power()
 
         assert not power.current_power
-

@@ -1,9 +1,12 @@
+import pygame
 import pytest
 
-import pygame
+from src.core.utils import get_obstacle_by_type
+from src.models.game import SpaceRunnerGame
+from src.models.obstacles import Bat, Grounder, Snail
+from src.models.player import Player
+from src.models.power import Power
 
-from src.models import Power, Player, Bat, Snail, Grounder, SpaceRunnerGame
-from src.utils.utils import get_obstacle_by_type
 
 def pytest_sessionstart() -> None:
     """
@@ -12,7 +15,7 @@ def pytest_sessionstart() -> None:
     """
     pygame.init()
     pygame.display.set_mode(((800, 400)))
-    
+
 
 def pytest_sessionfinish() -> None:
     """

@@ -27,7 +27,7 @@ Space Runner is a game developed in Python through the Pygame library. In this g
 
 ## Technologies used
 
-1. Python
+1. Python >= 3.11
 
 ## Libraries used
 
